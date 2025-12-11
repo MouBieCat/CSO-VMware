@@ -66,22 +66,23 @@ namespace cat::core {
 	/*
 	 * Initializes and creates an ENet client host for connecting to a remote server.
 	 *
-	 * @param _Server  The target server's hostname or IP address.
-	 * @param _Port    The target server's port number.
 	 * @param _Channel The number of channels allocated for communication with the server.
 	 */
-	void Core_enet_client_create(const std::string_view _Server, std::uint32_t _Port, std::uint32_t _Channel);
+	void Core_enet_client_create(std::uint32_t _Channel);
 
-	/**
-	 * Sends a packet to a specified ENet peer over a given channel.
+	/*
+	 * Connects the client host to a remote ENet server.
 	 *
-	 * @param _Peer    Pointer to the target peer connection (ENetPeer*), cast internally.
-	 * @param _Packet  Pointer to a cat::packet instance containing the data to send.
-	 * @param _Channel The channel ID to send the packet on. Must match the number of channels
-	 *                 allocated when creating the host or connecting the peer.
-	 * @param _Flags   ENet packet flags.
+	 * Establishes a peer connection to the specified server address and port,
+	 * requesting the given number of channels for communication. The actual
+	 * number of usable channels must not exceed the host's maximum channels.
+	 *
+	 * @param _Server  The remote server address (IP or hostname) to connect to.
+	 * @param _Port    The port number of the remote ENet server.
+	 * @param _Channel The number of channels to use for this connection.
+	 *                 Should be <= the client host's max channel count.
 	 */
-	void Core_enet_client_connect(const std::string_view _Host, std::uint32_t _Port, std::uint32_t _Channel);
+	void Core_enet_client_connect(const std::string_view _Server, std::uint32_t _Port, std::uint32_t _Channel);
 
 	/**
 	 * Sends a data packet from the server to a specific connected client.
