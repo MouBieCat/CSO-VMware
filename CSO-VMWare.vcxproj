@@ -165,7 +165,6 @@
     <ClInclude Include="include\stream.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="extern\enet\callbacks.c" />
     <ClCompile Include="extern\enet\host.c" />
     <ClCompile Include="extern\enet\list.c" />
@@ -174,6 +173,7 @@
     <ClCompile Include="extern\enet\protocol.c" />
     <ClCompile Include="extern\enet\win32.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="src\core.cpp" />
   </ItemGroup>
   <ItemGroup>
