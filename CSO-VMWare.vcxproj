@@ -27,7 +27,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_client|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -39,7 +39,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_client|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,6 +70,26 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_client|Win32'">
+    <OutDir>$(SolutionDir)$(MSBuildProjectDefaultTargets)\$(Configuration)\</OutDir>
+    <IntDir>$(MSBuildProjectDefaultTargets)\$(Configuration)\</IntDir>
+    <TargetName>vmclient</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_server|Win32'">
+    <OutDir>$(SolutionDir)$(MSBuildProjectDefaultTargets)\$(Configuration)\</OutDir>
+    <IntDir>$(MSBuildProjectDefaultTargets)\$(Configuration)\</IntDir>
+    <TargetName>vmserver</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_client|Win32'">
+    <OutDir>$(SolutionDir)$(MSBuildProjectDefaultTargets)\$(Configuration)\</OutDir>
+    <IntDir>$(MSBuildProjectDefaultTargets)\$(Configuration)\</IntDir>
+    <TargetName>vmclient</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_server|Win32'">
+    <OutDir>$(SolutionDir)$(MSBuildProjectDefaultTargets)\$(Configuration)\</OutDir>
+    <IntDir>$(MSBuildProjectDefaultTargets)\$(Configuration)\</IntDir>
+    <TargetName>vmserver</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_client|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
