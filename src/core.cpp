@@ -208,7 +208,7 @@ namespace cat::core {
 	Core_enet_pollevents(std::chrono::milliseconds _Timeout) {
 		assert(listener && "Listener must be installed before locating.");
 
-		ENetEvent event;
+		ENetEvent   event;
 		enet_uint32 timeout = static_cast<enet_uint32>(_Timeout.count());
 		while (enet_host_service(host, &event, timeout) > 0) {
 			peer_packet data{ event.peer, nullptr, 0 };
@@ -217,9 +217,11 @@ namespace cat::core {
 			case ENET_EVENT_TYPE_CONNECT:
 				listener->OnConnect(data);
 				break;
+
 			case ENET_EVENT_TYPE_DISCONNECT:
 				listener->OnDisconnect(data);
 				break;
+
 			case ENET_EVENT_TYPE_RECEIVE:
 				data.data = event.packet->data;
 				data.length = event.packet->dataLength;

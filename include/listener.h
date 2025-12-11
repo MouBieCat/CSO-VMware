@@ -30,7 +30,7 @@
 #include <cstdint>
 #include <functional>
 
-namespace cat::core {
+namespace cat {
 	/*
 	 * Represents a simplified network packet received from or sent to a peer.
 	 * Encapsulates the peer reference, a pointer to the raw data, and the length of the data.
@@ -55,6 +55,9 @@ namespace cat::core {
 	};
 
 	using listen_interface = packet_handler const*;
+}
+
+namespace cat::core {
 
 	/*
 	 * Installs the global packet handler interface.
