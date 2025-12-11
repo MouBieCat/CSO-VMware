@@ -36,7 +36,7 @@ namespace cat {
 	 * Encapsulates the peer reference, a pointer to the raw data, and the length of the data.
 	 * This struct abstracts away the underlying ENetEvent or ENetPacket details.
 	 */
-	struct packet_data {
+	struct peer_packet {
 		void*			peer;	/* Opaque pointer to the remote peer */
 		std::uint8_t*	data;	/* Pointer to the raw packet data */
 		std::size_t		length;	/* Length of the data in bytes */
@@ -45,17 +45,39 @@ namespace cat {
 	/*
 	 * Handler structure for binding callback functions to network events.
 	 * Allows client or server code to specify behavior for connect, disconnect, and receive events.
-	 *
-	 * Using 'const_packet' as a type alias simplifies function signatures and ensures
-	 * that packet data is passed by reference without modification.
 	 */
-	struct handler {
-		using const_packet = const packet_data&;
+	struct packet_handler {
+		using const_packet = const peer_packet&;
 
 		std::function<void(const_packet)> OnConnect;	/* Called when a peer successfully connects */
 		std::function<void(const_packet)> OnDisconnect; /* Called when a peer disconnects */
 		std::function<void(const_packet)> OnReceive;	/* Called when a data packet is received from a peer */
 	};
+
+	using listen_interface = packet_handler const*;
+
+	/*
+	 * Installs the global packet handler interface.
+	 *
+	 * This function registers a user-provided handler used to process
+	 * network events (connect, disconnect, receive). The caller must ensure
+	 * that the provided pointer remains valid for the duration of use.
+	 *
+	 * @param _Protocol Pointer to a valid packet_handler instance.
+	 *                  Must not be null.
+	 */
+	void InstallListener(listen_interface _Protocol) noexcept;
+
+	/*
+	 * Retrieves the currently installed packet handler.
+	 *
+	 * If no handler has been installed, this function returns nullptr.
+	 * The caller should check the returned value before use.
+	 *
+	 * @return The installed packet_handler interface, or nullptr if
+	 *         no handler has been registered.
+	 */
+	[[nodiscard]] listen_interface LocateListener() noexcept;
 }
 
 #endif // ^^^ !_LISTENER_H_

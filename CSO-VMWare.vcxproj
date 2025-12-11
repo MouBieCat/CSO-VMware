@@ -175,6 +175,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="src\core.cpp" />
+    <ClCompile Include="src\listener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />

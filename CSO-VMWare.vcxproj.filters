@@ -18,6 +18,12 @@
     <ClInclude Include="include\core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\listener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\stream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,12 +51,6 @@
     <ClInclude Include="extern\enet\include\enet\win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\listener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\packet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="extern\enet\callbacks.c">
