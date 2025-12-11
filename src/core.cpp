@@ -98,12 +98,10 @@ namespace cat::core {
 	/*
 		Initializes and creates an ENet client host for connecting to a remote server.
 		
-		@param _Server  The target server's hostname or IP address.
-		@param _Port    The target server's port number.
 		@param _Channel The number of channels allocated for communication with the server.
 	 */
 	void
-	Core_enet_client_create(const std::string_view _Server, std::uint32_t _Port, std::uint32_t _Channel) {
+	Core_enet_client_create(std::uint32_t _Channel) {
 		if (!initialized) {
 			throw std::runtime_error("ENet must be initialized before creating a client.");
 		}
@@ -111,10 +109,6 @@ namespace cat::core {
 		if (host != nullptr) {
 			throw std::runtime_error("ENet host already created.");
 		}
-
-		ENetAddress addr;
-		enet_address_set_host(&addr, _Server.data());
-		addr.port = _Port;
 
 		host = enet_host_create(NULL, 1, _Channel, NULL, NULL);
 		if (host == nullptr) {
@@ -131,12 +125,12 @@ namespace cat::core {
 		using `_Core_enet_client_create()`. The connection attempt is asynchronous;
 		you must handle ENET_EVENT_TYPE_CONNECT in your event loop to confirm success.
 		
-		@param _Host    The target server's hostname or IP address.
+		@param _Server  The target server's hostname or IP address.
 		@param _Port    The target server's port number.
 		@param _Channel The number of channels (must match the one used when creating the host).
 	 */
 	void
-	Core_enet_client_connect(const std::string_view _Host, std::uint32_t _Port, std::uint32_t _Channel) {
+	Core_enet_client_connect(const std::string_view _Server, std::uint32_t _Port, std::uint32_t _Channel) {
 		if (!initialized) {
 			throw std::runtime_error("ENet must be initialized before creating a client.");
 		}
@@ -146,7 +140,7 @@ namespace cat::core {
 		}
 
 		ENetAddress addr;
-		enet_address_set_host(&addr, _Host.data());
+		enet_address_set_host(&addr, _Server.data());
 		addr.port = _Port;
 
 		conn = enet_host_connect(host, &addr, _Channel, NULL);
@@ -202,7 +196,13 @@ namespace cat::core {
 		                std::chrono::milliseconds, std::chrono::seconds, etc.
 	 */
 	void
-	Core_enet_pullevent(std::chrono::milliseconds _Timeout) {
+	Core_enet_pollevents(std::chrono::milliseconds _Timeout) {
+		const enet_uint32 timeout = static_cast<enet_uint32>(_Timeout.count());
+
+		ENetEvent event;
+		while (enet_host_service(host, &event, timeout) > 0) {
+			// ....
+		}
 	}
 
 	/*
