@@ -26,5 +26,14 @@
     <None Include="LICENSE" />
     <None Include=".gitignore" />
     <None Include=".gitattributes" />
+    <None Include=".gitmodules" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
