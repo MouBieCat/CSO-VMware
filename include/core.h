@@ -110,6 +110,7 @@ namespace cat::core {
 	 * @param _Timeout Duration to wait for an event. Use std::chrono types like
 	 *                 std::chrono::milliseconds, std::chrono::seconds, etc.
 	 */
-	void Core_enet_pullevent(std::chrono::milliseconds _Timeout);
+	void Core_enet_pollevents(std::chrono::milliseconds _Timeout);
 }
+
 #endif // ^^^ !_CORE_H_
