@@ -21,7 +21,8 @@ namespace cat {
 		@param _Protocol Pointer to a valid packet_handler instance.
 		                 Must not be null.
 	 */
-	void InstallListener(listen_interface _Protocol) noexcept {
+	void
+	InstallListener(listen_interface _Protocol) noexcept {
 		assert(_Protocol && "Listener protocol must not be null.");
 		listener = _Protocol;
 	}
@@ -35,7 +36,8 @@ namespace cat {
 		@return The installed packet_handler interface, or nullptr if
 		        no handler has been registered.
 	 */
-	[[nodiscard]] listen_interface LocateListener() noexcept {
+	listen_interface
+	LocateListener() noexcept {
 		assert(listener && "Listener must be installed before locating.");
 		return listener;
 	}

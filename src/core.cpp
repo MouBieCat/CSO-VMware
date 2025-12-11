@@ -202,8 +202,29 @@ namespace cat::core {
 
 		ENetEvent event;
 		while (enet_host_service(host, &event, timeout) > 0) {
-			enet_packet_destroy(event.packet);
-			event.packet = nullptr;
+			listen_interface listen = LocateListener();
+			peer_packet data{ event.peer, nullptr, -1 };
+
+			switch (event.type) {
+			case ENET_EVENT_TYPE_CONNECT:
+				listen->OnConnect(data);
+				break;
+
+			case ENET_EVENT_TYPE_DISCONNECT:
+				listen->OnDisconnect(data);
+				break;
+
+			case ENET_EVENT_TYPE_RECEIVE:
+				if (event.packet != nullptr) {
+					data.data = event.packet->data;
+					data.length = event.packet->dataLength;
+					listen->OnReceive(data);
+
+					enet_packet_destroy(event.packet);
+					event.packet = nullptr;
+				}
+				break;
+			}
 		}
 	}
 
