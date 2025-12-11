@@ -6,5 +6,5 @@
     <BuildType Name="Release_server" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="CSO-VMWare.vcxproj" Id="dd32ef2a-7c3b-4a02-bc5e-038ed46da11f" />
+  <Project Path="CSO-VMware.vcxproj" Id="dd32ef2a-7c3b-4a02-bc5e-038ed46da11f" />
 </Solution>

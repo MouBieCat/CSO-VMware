@@ -22,7 +22,7 @@
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{dd32ef2a-7c3b-4a02-bc5e-038ed46da11f}</ProjectGuid>
-    <RootNamespace>CSOVMWare</RootNamespace>
+    <RootNamespace>CSOVMware</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
