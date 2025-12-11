@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <enet/enet.h>
 #include "core.h"
+#include "listener.h"
 
 /*
  * Directly instructs the linker to include required libraries.
@@ -201,7 +202,8 @@ namespace cat::core {
 
 		ENetEvent event;
 		while (enet_host_service(host, &event, timeout) > 0) {
-			// ....
+			enet_packet_destroy(event.packet);
+			event.packet = nullptr;
 		}
 	}
 

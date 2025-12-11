@@ -26,7 +26,36 @@
 #ifndef _LISTENER_H_
 #define _LISTENER_H_
 
+#include <cstddef>
+#include <cstdint>
+#include <functional>
+
 namespace cat {
+	/*
+	 * Represents a simplified network packet received from or sent to a peer.
+	 * Encapsulates the peer reference, a pointer to the raw data, and the length of the data.
+	 * This struct abstracts away the underlying ENetEvent or ENetPacket details.
+	 */
+	struct packet_data {
+		void*			peer;	/* Opaque pointer to the remote peer */
+		std::uint8_t*	data;	/* Pointer to the raw packet data */
+		std::size_t		length;	/* Length of the data in bytes */
+	};
+
+	/*
+	 * Handler structure for binding callback functions to network events.
+	 * Allows client or server code to specify behavior for connect, disconnect, and receive events.
+	 *
+	 * Using 'const_packet' as a type alias simplifies function signatures and ensures
+	 * that packet data is passed by reference without modification.
+	 */
+	struct handler {
+		using const_packet = const packet_data&;
+
+		std::function<void(const_packet)> OnConnect;	/* Called when a peer successfully connects */
+		std::function<void(const_packet)> OnDisconnect; /* Called when a peer disconnects */
+		std::function<void(const_packet)> OnReceive;	/* Called when a data packet is received from a peer */
+	};
 }
 
 #endif // ^^^ !_LISTENER_H_
