@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include "net.h"
 #include "client.h"
 #include "server.h"
 #include "listener.h"
@@ -41,7 +42,7 @@ int main(int _Argc, char** _Argv) {
 #endif // CLIENT
 	host.connect();
 
-	while (host.loop_active()) {
+	while (cat::is_connecting()) {
 		host.poll();
 
 #if CLIENT

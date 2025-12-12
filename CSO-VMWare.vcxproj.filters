@@ -54,6 +54,9 @@
     <ClInclude Include="include\client.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\net.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="extern\enet\callbacks.c">

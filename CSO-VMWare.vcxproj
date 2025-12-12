@@ -165,6 +165,7 @@
     <ClInclude Include="extern\enet\include\enet\types.h" />
     <ClInclude Include="extern\enet\include\enet\utility.h" />
     <ClInclude Include="extern\enet\include\enet\win32.h" />
+    <ClInclude Include="include\net.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

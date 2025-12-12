@@ -21,6 +21,28 @@ namespace cat {
 
 
 	/*
+		Reports whether the ENet subsystem has been successfully initialized.
+		
+		@return true  If the ENet system is initialized and ready.
+		@return false If ENet has not been set up or has already been shut down.
+	 */
+	bool
+	is_setup() noexcept {
+		return setup;
+	}
+
+	/*
+		Returns whether a client connection attempt is currently active.
+		
+		@return true  If a connection is active or being established.
+		@return false If no client connection exists.
+	 */
+	bool
+	is_connecting() noexcept {
+		return connecting;
+	}
+
+	/*
 		Performs the necessary initialization and setup for the client or server.
 		This may include creating network hosts, initializing internal state, and
 		preparing the object for sending/receiving data.
