@@ -190,7 +190,8 @@ namespace cat {
 			if (!read(size) || pos + size > buf.size()) {
 				return false;
 			}
-			_Value.assign(buf.begin() + pos, buf.begin() + pos + size);
+			_Value.resize(size);
+			std::memcpy(_Value.data(), buf.data() + pos, size);
 			pos += size;
 			return true;
 		}
@@ -243,7 +244,9 @@ namespace cat {
 		 */
 		void write_str(const std::string& _Value) {
 			write(_Value.size());
-			buf.insert(buf.end(), _Value.begin(), _Value.end());
+			const std::size_t size = buf.size();
+			buf.resize(buf.size() + _Value.size());
+			std::memcpy(buf.data() + size, _Value.data(), _Value.length());
 		}
 	private:
 	};
