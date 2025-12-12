@@ -176,6 +176,7 @@
     <ClCompile Include="extern\enet\peer.c" />
     <ClCompile Include="extern\enet\protocol.c" />
     <ClCompile Include="extern\enet\win32.c" />
+    <ClCompile Include="src\net.cpp" />
     <ClCompile Include="src\core.cpp" />
   </ItemGroup>
   <ItemGroup>
