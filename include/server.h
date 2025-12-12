@@ -73,7 +73,28 @@ namespace cat {
 		 * @return true  If the setup was successful
 		 * @return false If any step failed
 		 */
-		[[nodiscard]] bool install();
+		void install();
+
+		/*
+		 * Safely shuts down the client or server instance.
+		 *
+		 * This function ensures that all active connections are properly disconnected
+		 * and that any associated ENet resources are released. It is safe to call
+		 * multiple times; subsequent calls will have no effect.
+		 *
+		 * The function is marked noexcept to guarantee it does not throw exceptions
+		 * during destruction or cleanup.
+		 */
+		void shutdown() noexcept;
+
+		/*
+		 * Destructor for the server class.
+		 * Ensures that all connected clients are properly disconnected,
+		 * the server host is destroyed, and ENet resources are released.
+		 */
+		~server() noexcept {
+			shutdown();
+		}
 	private:
 		// Host name or IP address for the listening endpoint
 		const std::string_view host;

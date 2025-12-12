@@ -68,22 +68,37 @@ namespace cat {
 		 * Performs the necessary initialization and setup for the client or server.
 		 * This may include creating network hosts, initializing internal state, and
 		 * preparing the object for sending/receiving data.
-		 *
-		 * @return true  If the setup was successful
-		 * @return false If any step failed
 		 */
-		[[nodiscard]] bool install();
+		void install();
 
 		/*
 		 * Establishes a connection from the client to the specified server.
 		 * This function should be called after `install()` has successfully completed.
 		 * It initiates an asynchronous connection; success/failure should be
 		 * confirmed through event handling or a connected status check.
-		 *
-		 * @return true  If the connection request was successfully initiated
-		 * @return false If the connection could not be started (e.g., host not created)
 		 */
-		[[nodiscard]] bool connect();
+		void connect();
+
+		/*
+		 * Safely shuts down the client or server instance.
+		 *
+		 * This function ensures that all active connections are properly disconnected
+		 * and that any associated ENet resources are released. It is safe to call
+		 * multiple times; subsequent calls will have no effect.
+		 *
+		 * The function is marked noexcept to guarantee it does not throw exceptions
+		 * during destruction or cleanup.
+		 */
+		void shutdown() noexcept;
+
+		/*
+		 * Destructor for the client class.
+		 * Ensures that any active connections are properly disconnected
+		 * and that ENet resources associated with this client are released.
+		 */
+		~client() noexcept {
+			shutdown();
+		}
 	private:
 		// Host name or IP address of the remote server
 		const std::string_view server;
