@@ -41,27 +41,27 @@ namespace cat {
 		std::uint8_t*	data;	/* Pointer to the raw packet data */
 		std::size_t		length;	/* Length of the data in bytes */
 	};
-
-	/*
-	 * Default event callbacks for the network layer.
-	 * These functions are declared here but must be implemented in client.cpp or server.cpp.
-	 * They define how the application responds to connection, disconnection, and packet reception events.
-	 */
-	extern void OnConnect(cat::peer_data _Data);
-
-	/*
-	 * Default event callbacks for the network layer.
-	 * These functions are declared here but must be implemented in client.cpp or server.cpp.
-	 * They define how the application responds to connection, disconnection, and packet reception events.
-	 */
-	extern void OnDisconnect(cat::peer_data _Data);
-
-	/*
-	 * Default event callbacks for the network layer.
-	 * These functions are declared here but must be implemented in client.cpp or server.cpp.
-	 * They define how the application responds to connection, disconnection, and packet reception events.
-	 */
-	extern void OnReceive(cat::peer_data _Data);
 }
+
+/*
+ * Default event callbacks for the network layer.
+ * These functions are declared here but must be implemented in client.cpp or server.cpp.
+ * They define how the application responds to connection, disconnection, and packet reception events.
+ */
+extern void OnConnect(cat::peer_data _Data);
+
+/*
+ * Default event callbacks for the network layer.
+ * These functions are declared here but must be implemented in client.cpp or server.cpp.
+ * They define how the application responds to connection, disconnection, and packet reception events.
+ */
+extern void OnDisconnect(cat::peer_data _Data);
+
+/*
+ * Default event callbacks for the network layer.
+ * These functions are declared here but must be implemented in client.cpp or server.cpp.
+ * They define how the application responds to connection, disconnection, and packet reception events.
+ */
+extern void OnReceive(cat::peer_data _Data);
 
 #endif // ^^^ !_LISTENER_H_
