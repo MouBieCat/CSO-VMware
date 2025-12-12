@@ -51,9 +51,10 @@ namespace cat {
 		 *                string must remain valid for the lifetime of this object.
 		 *
 		 * @param _Port   Destination port number used during the connection attempt.
+		 * @param _Name   A user-defined identifier for this client instance
 		 */
-		constexpr client(const std::string_view _Server, std::uint32_t _Port) noexcept
-			: server(_Server), port(_Port) {}
+		constexpr client(const std::string_view _Server, std::uint32_t _Port, std::string_view _Name) noexcept
+			: server(_Server), port(_Port), name(_Name) {}
 
 		/*
 		 * Returns the client/server address in "host:port" format.
@@ -63,6 +64,15 @@ namespace cat {
 		 */
 		[[nodiscard]] std::string ipaddress() const noexcept {
 			return std::format("{}:{}", server, port);
+		}
+
+		/*
+		 * Returns the user-defined identity string associated with this client.
+		 * 
+		 * @return A non-owning string_view representing the client's username.
+		 */
+		[[nodiscard]] constexpr std::string_view username() const noexcept {
+			return name;
 		}
 
 		/*
@@ -108,6 +118,9 @@ namespace cat {
 
 		// Port number on the remote server that the client should connect to
 		const std::uint32_t port;
+
+		// Local identity tag for this client instance.
+		const std::string_view name;
 	};
 }
 

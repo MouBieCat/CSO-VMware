@@ -38,6 +38,7 @@ namespace cat {
 	 */
 	const struct peer_data {
 		void*			peer;	/* Opaque pointer to the remote peer */
+		void*			cache;  /* Pointer to the raw packet data received from this peer. */
 		std::uint8_t*	data;	/* Pointer to the raw packet data */
 		std::size_t		length;	/* Length of the data in bytes */
 	};

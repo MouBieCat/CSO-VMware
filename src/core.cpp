@@ -202,7 +202,7 @@ namespace cat::core {
 		enet_uint32 timeout = static_cast<enet_uint32>(_Timeout.count());
 
 		while (enet_host_service(host, &event, timeout) > 0) {
-			peer_data data{ event.peer, nullptr, 0 };
+			peer_data data{ event.peer, event.peer->data, nullptr, 0 };
 
 			switch (event.type) {
 			case ENET_EVENT_TYPE_CONNECT:
