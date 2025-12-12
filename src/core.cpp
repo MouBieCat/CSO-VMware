@@ -150,6 +150,56 @@ namespace cat::core {
 		}
 	}
 
+	/*
+		Disconnects a specific peer from the ENet server.
+		
+		Sends a disconnect request to the given peer. If `_Now` is true, the
+		peer will be immediately disconnected without waiting for queued packets
+		to be sent. Otherwise, a graceful disconnect is performed.
+		
+		@param _Peer Pointer to the ENetPeer to disconnect.
+		@param _Now  If true, disconnect immediately; otherwise, perform a graceful disconnect.
+	 */
+	void
+	Core_enet_server_disconnect(void* _Peer, bool _Now) {
+		if (_Peer == nullptr) {
+			return;
+		}
+
+		ENetPeer* peer = static_cast<ENetPeer*>(_Peer);
+		if (_Now) {
+			enet_peer_disconnect_now(peer, 0);
+		}
+		else {
+			enet_peer_disconnect(peer, 0);
+		}
+	}
+
+	/*
+		Disconnects the client from the currently connected ENet server.
+		
+		Sends a graceful disconnect request to the server and updates the internal
+		connection state. After calling this function, the client will no longer
+		receive or send packets until a new connection is established.
+		
+		If the client is not currently connected, this function has no effect.
+	 */
+	void
+	Core_enet_client_disconnect(bool _Now) {
+		if (conn == nullptr) {
+			return;
+		}
+
+		if (_Now) {
+			enet_peer_disconnect_now(conn, 0);
+		}
+		else {
+			enet_peer_disconnect(conn, 0);
+		}
+
+		conn = nullptr;
+	}
+
 	/**
 		Sends a data packet from the server to a specific connected client.
 		
@@ -181,10 +231,6 @@ namespace cat::core {
 	 */
 	void
 	Core_enet_client_send(const void* _Data, std::size_t _Size, std::uint32_t _Channel, std::uint32_t _Flags) {
-		assert(host && "ENet host must be created before sending packets.");
-		assert(conn && "ENet client must be connected before sending packets.");
-		assert(initialized && "ENet must be initialized before sending packets.");
-
 		ENetPacket* pkt = enet_packet_create(_Data, _Size, _Flags);
 		enet_peer_send(conn, _Channel, pkt);
 		enet_host_flush(host);

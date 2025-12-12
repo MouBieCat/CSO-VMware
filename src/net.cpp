@@ -25,6 +25,15 @@ namespace cat {
 		core::Core_enet_client_connect(server, port, 0);
 		flag = true;
 	}
+
+	/*
+		Disconnects the client from the currently connected ENet server.
+		providing a convenient method to terminate the connection from the client class.
+	 */
+	void
+	client::disconnect() const {
+		core::Core_enet_client_disconnect(false);
+	}
 	
 	/*
 		Polls the ENet server for incoming events such as connections,

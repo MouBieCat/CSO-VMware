@@ -83,6 +83,12 @@ namespace cat {
 		void connect() const;
 
 		/*
+		 * Disconnects the client from the currently connected ENet server.
+		 * providing a convenient method to terminate the connection from the client class.
+		 */
+		void disconnect() const;
+
+		/*
 		 * Polls the ENet server for incoming events such as connections,
 		 * disconnections, and data packets. This function blocks for up to
 		 * 600 ms while waiting for events, then returns control to the caller.

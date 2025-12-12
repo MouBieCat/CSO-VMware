@@ -84,6 +84,30 @@ namespace cat::core {
 	 */
 	void Core_enet_client_connect(const std::string_view _Server, std::uint32_t _Port, std::uint32_t _Channel);
 
+	/*
+	 * Disconnects a specific peer from the ENet server.
+	 *
+	 * Sends a disconnect request to the given peer. If `_Now` is true, the
+	 * peer will be immediately disconnected without waiting for queued packets
+	 * to be sent. Otherwise, a graceful disconnect is performed.
+	 *
+	 * @param _Peer Pointer to the ENetPeer to disconnect.
+	 * @param _Now  If true, disconnect immediately; otherwise, perform a graceful disconnect.
+	 */
+	void Core_enet_server_disconnect(void* _Peer, bool _Now);
+
+	/*
+	 * Disconnects the client from the currently connected ENet server.
+	 *
+	 * Sends a disconnect request to the server. If `_Now` is true, the
+	 * client will disconnect immediately without waiting for queued packets.
+	 * Otherwise, a graceful disconnect is performed. After this call, the
+	 * client must call `Core_enet_client_connect` again to establish a new connection.
+	 *
+	 * @param _Now If true, disconnect immediately; otherwise, perform a graceful disconnect.
+	 */
+	void Core_enet_client_disconnect(bool _Now);
+
 	/**
 	 * Sends a data packet from the server to a specific connected client.
 	 *
