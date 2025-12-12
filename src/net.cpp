@@ -76,9 +76,9 @@ namespace cat {
 	 */
 	void
 	client::shutdown() const noexcept {
+		core::Core_enet_deinitialize();
 		setup = false;
 		connecting = false;
-		core::Core_enet_deinitialize();
 	}
 
 	/*

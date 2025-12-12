@@ -92,9 +92,8 @@ namespace cat::core {
 	 * to be sent. Otherwise, a graceful disconnect is performed.
 	 *
 	 * @param _Peer Pointer to the ENetPeer to disconnect.
-	 * @param _Now  If true, disconnect immediately; otherwise, perform a graceful disconnect.
 	 */
-	void Core_enet_server_disconnect(void* _Peer, bool _Now);
+	void Core_enet_server_disconnect(void* _Peer);
 
 	/*
 	 * Disconnects the client from the currently connected ENet server.
@@ -103,10 +102,8 @@ namespace cat::core {
 	 * client will disconnect immediately without waiting for queued packets.
 	 * Otherwise, a graceful disconnect is performed. After this call, the
 	 * client must call `Core_enet_client_connect` again to establish a new connection.
-	 *
-	 * @param _Now If true, disconnect immediately; otherwise, perform a graceful disconnect.
 	 */
-	void Core_enet_client_disconnect(bool _Now);
+	void Core_enet_client_disconnect();
 
 	/**
 	 * Sends a data packet from the server to a specific connected client.
