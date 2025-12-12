@@ -48,6 +48,12 @@
     <ClInclude Include="include\stream.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\server.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\client.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="extern\enet\callbacks.c">

@@ -151,6 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\client.h" />
+    <ClInclude Include="include\core.h" />
+    <ClInclude Include="include\listener.h" />
+    <ClInclude Include="include\packet.h" />
+    <ClInclude Include="include\stream.h" />
+    <ClInclude Include="include\server.h" />
     <ClInclude Include="extern\enet\include\enet\callbacks.h" />
     <ClInclude Include="extern\enet\include\enet\enet.h" />
     <ClInclude Include="extern\enet\include\enet\list.h" />
@@ -159,12 +165,10 @@
     <ClInclude Include="extern\enet\include\enet\types.h" />
     <ClInclude Include="extern\enet\include\enet\utility.h" />
     <ClInclude Include="extern\enet\include\enet\win32.h" />
-    <ClInclude Include="include\core.h" />
-    <ClInclude Include="include\listener.h" />
-    <ClInclude Include="include\packet.h" />
-    <ClInclude Include="include\stream.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="extern\enet\callbacks.c" />
     <ClCompile Include="extern\enet\host.c" />
     <ClCompile Include="extern\enet\list.c" />
@@ -172,8 +176,6 @@
     <ClCompile Include="extern\enet\peer.c" />
     <ClCompile Include="extern\enet\protocol.c" />
     <ClCompile Include="extern\enet\win32.c" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="src\core.cpp" />
   </ItemGroup>
   <ItemGroup>
